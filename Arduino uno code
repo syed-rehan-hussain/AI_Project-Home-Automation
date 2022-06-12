@@ -1,0 +1,84 @@
+#include <SoftwareSerial.h>
+#define RELAY2 2
+#define RELAY3 3
+#define RELAY4 4
+#define RELAY5 5
+
+int TX = 11;
+int RX = 10;
+
+SoftwareSerial bluetooth(TX,RX);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+  pinMode(RELAY2,OUTPUT);
+  pinMode(RELAY3,OUTPUT);
+  pinMode(RELAY4,OUTPUT);
+  pinMode(RELAY5,OUTPUT);
+}
+
+void loop() {
+// from python code
+  if(Serial.available()){
+    char data = Serial.read();
+    if(data == 'A'){
+      digitalWrite(RELAY2,HIGH);
+      }else if(data == 'a'){
+        digitalWrite(RELAY2,LOW);
+      }
+
+      else if(data == 'B'){
+        digitalWrite(RELAY3,HIGH);
+      }
+      else if(data == 'b'){
+        digitalWrite(RELAY3,LOW);
+      }
+
+      else if(data == 'C'){
+        digitalWrite(RELAY4,HIGH);
+      }
+      else if(data == 'c'){
+        digitalWrite(RELAY4,LOW);
+      }
+
+      else if(data == 'D'){
+        digitalWrite(RELAY5,HIGH);
+      }
+      else if(data == 'd'){
+        digitalWrite(RELAY5,LOW);
+      }
+    }
+
+//    from mobile app
+    if(bluetooth.available()){
+    char data = bluetooth.read();
+    if(data == 'A'){
+      digitalWrite(RELAY2,HIGH);
+      }else if(data == 'a'){
+        digitalWrite(RELAY2,LOW);
+      }
+
+      else if(data == 'B'){
+        digitalWrite(RELAY3,HIGH);
+      }
+      else if(data == 'b'){
+        digitalWrite(RELAY3,LOW);
+      }
+
+      else if(data == 'C'){
+        digitalWrite(RELAY4,HIGH);
+      }
+      else if(data == 'c'){
+        digitalWrite(RELAY4,LOW);
+      }
+
+      else if(data == 'D'){
+        digitalWrite(RELAY5,HIGH);
+      }
+      else if(data == 'd'){
+        digitalWrite(RELAY5,LOW);
+      }
+    }
+}
